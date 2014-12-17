@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.livrariadigital.dao.LivroDAO;
-import com.livrariadigital.modelo.Livro;
+import com.livrariadigital.model.Livro;
+import com.livrariadigital.model.dao.LivroDAO;
 
 public class LogicaAdicionaLivro implements LogicaDeNegocio {
 

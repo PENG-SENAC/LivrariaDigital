@@ -10,9 +10,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.livrariadigital.dao.LivroDAO;
-import com.livrariadigital.jdbc.FabricaDeConexao;
-import com.livrariadigital.modelo.Livro;
+import com.livrariadigital.model.Livro;
+import com.livrariadigital.model.dao.LivroDAO;
+import com.livrariadigital.model.jdbc.FabricaDeConexao;
+
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class TesteLivrariaDigital {

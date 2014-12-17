@@ -1,4 +1,4 @@
-<%@page import="com.livrariadigital.modelo.Livro,livrariadigital.dao.LivroDAO"%>
+<%@page import="com.livrariadigital.model.Livro, com.livrariadigital.model.dao.LivroDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
