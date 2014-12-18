@@ -1,6 +1,6 @@
 package com.livrariadigital.model;
 
-import java.util.Calendar;
+import java.util.Date;
 
 public class Livro {
 	
@@ -9,7 +9,7 @@ public class Livro {
 	private String autor;
 	private String editora;
 	private String email;
-	private Calendar dataLancamento;
+	private Date dataLancamento;
 	
 	public Long getId() {
 		return id;
@@ -41,10 +41,10 @@ public class Livro {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Calendar getDataLancamento() {
+	public Date getDataLancamento() {
 		return dataLancamento;
 	}
-	public void setDataLancamento(Calendar dataLancamento) {
+	public void setDataLancamento(Date dataLancamento) {
 		this.dataLancamento = dataLancamento;
 	}
 	@Override

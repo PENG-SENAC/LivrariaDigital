@@ -14,7 +14,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/javax.servlet.jsp.jstl-api-1.2.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mysql-connector-java-5.1.21-bin.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-lang3-3.3.2.jar"/>
-	<classpathentry kind="lib" path="WebContent/cadastrarlivro.jsp"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>

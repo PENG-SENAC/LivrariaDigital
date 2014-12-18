@@ -10,7 +10,7 @@ public class FabricaDeConexao {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String endereco = "jdbc:mysql://localhost/";
-			String schemaDB = "testPeng";
+			String schemaDB = "livraria";
 			String usuario = "root";
 			String senha = "";
 			

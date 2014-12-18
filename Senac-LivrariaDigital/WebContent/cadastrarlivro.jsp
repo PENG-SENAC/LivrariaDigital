@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form id="formCadastrarLivro" action="executar" method="POST">
+<form id="formCadastrarLivro" action="LivrariaDigitalController" method="POST">
 	<table>
 		<tr>
 			<td colspan="2" align="center"><h3>Cadastrar Livro</h3></td>
@@ -24,6 +24,10 @@
 		<tr>
 			<td><label for="editora">Editora: </label></td>
 			<td><input type="text" id="editora" name = "editora" /></td>
+		</tr>
+		<tr>
+			<td><label for="email">Data: </label></td>
+			<td><input type="text" id="data" name = "data" /></td>
 		</tr>
 		<tr>
 			<td><label for="email">Email: </label></td>
