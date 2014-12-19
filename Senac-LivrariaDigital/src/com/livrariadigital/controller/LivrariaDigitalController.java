@@ -28,7 +28,7 @@ public class LivrariaDigitalController extends HttpServlet {
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String packageLogicaDeNegocio = "com.livrariadigital.controller";
+		String packageLogicaDeNegocio = "com.livrariadigital.controller.logicanegocio";
 		String nomeClasseLogicaDeNegocio = packageLogicaDeNegocio+"."+request.getParameter("rn");
 		
 		try {

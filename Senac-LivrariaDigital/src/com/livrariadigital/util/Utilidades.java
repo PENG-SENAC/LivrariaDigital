@@ -12,5 +12,10 @@ public class Utilidades {
 		SimpleDateFormat sdf = new SimpleDateFormat(Constantes.dataFormato);
 		return sdf.parse(dataString);
 	}
+	
+	public static String dateToString(Date date){
+		SimpleDateFormat sdf = new SimpleDateFormat(Constantes.dataFormato);
+		return sdf.format(date);
+	}
 
 }
