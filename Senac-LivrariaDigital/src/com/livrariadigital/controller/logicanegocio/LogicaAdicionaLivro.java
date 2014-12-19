@@ -15,7 +15,7 @@ import com.livrariadigital.util.Utilidades;
 public class LogicaAdicionaLivro implements LogicaDeNegocio {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("Executando a logica e redirecionando...");
+		System.out.println("Logica Adicionar Livro");
 
 		Livro livro = new Livro();
 		LivroDAO dao = new LivroDAO( FabricaDeConexao.getConexao() );
@@ -27,7 +27,7 @@ public class LogicaAdicionaLivro implements LogicaDeNegocio {
 		livro.setEmail( request.getParameter("email") );
 
 		try {
-			dao.adiciona(livro);
+			dao.adicionarLivro(livro);
 		} catch (SQLException e) {
 			throw new ServletException(e);
 		}

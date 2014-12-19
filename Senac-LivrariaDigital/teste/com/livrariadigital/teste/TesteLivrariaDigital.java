@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.livrariadigital.constantes.Constantes;
@@ -25,39 +26,43 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 public class TesteLivrariaDigital {
 
+	@Ignore
 	@Test
 	public void testeConexaoBancoDados(){
 		Connection con;
 		try {
 			con = FabricaDeConexao.getConexao();
-			System.out.println("Conexão com o banco de dados realizada com sucesso!");
 			con.close();
 			Assert.assertNotNull(con);
 			
 		} catch (SQLException e) {
 			Assert.fail("Falha durante abertura ou fechamento da Conexao");
 		}
-		
+		assertTrue("Conexao efetuada com Sucesso", true);
 	}
 	@Test
-	public void listarLivros(){
-		LivroDAO dao;
+	public void testeListarLivros(){
 		List<Livro> livros = null;
 		
 		try {
-			dao = new LivroDAO( FabricaDeConexao.getConexao() );
-			livros = dao.getLista();
+			livros = TesteLivrariaDigital.getLista();
 			System.out.println( "LISTA DE LIVROS: "+livros.toString() );
 		
 		} catch (SQLException e) {
 			Assert.fail("Falha ao instanciar ou tentar Buscar Lista de Livros");
-			return;
 		}
 		
 		Assert.assertNotNull(livros);
+		
 	}
+	
+	public static List<Livro> getLista() throws SQLException{
+		LivroDAO dao = new LivroDAO( FabricaDeConexao.getConexao() );
+		return dao.getLista();
+	}
+	
 	@Test
-	public void adicionaLivro(){
+	public void testeAdicionarLivro(){
 		Livro livro = new Livro();
 		Random random = new Random();
 		LivroDAO dao;
@@ -76,12 +81,37 @@ public class TesteLivrariaDigital {
 		
 		try {
 			dao = new LivroDAO(FabricaDeConexao.getConexao());
-			dao.adiciona(livro);
-			assertTrue("Sucesso Livro Adicionado com sucesso "+livro.toString(), true);
+			dao.adicionarLivro(livro);
+			
 		} catch (SQLException e) {
 			Assert.fail("Falha ao adicionar "+livro.toString() );
 		}
 		
+		assertTrue("Sucesso Livro Adicionado com sucesso "+livro.toString(), true);
+	}
+	
+	@Test
+	public void testeExcluirLivro(){
+		this.testeAdicionarLivro();
+		List<Livro> livros = null;
+		LivroDAO dao;
+		try {
+			livros = this.getLista();
+		} catch (SQLException e1) {
+			Assert.fail("ExcluirLivro - Teste ao receber Lista ");
+		}
+		
+		Livro livro = livros.get( livros.size()-1 );
+		
+		try {
+			dao = new LivroDAO(FabricaDeConexao.getConexao());
+			dao.excluirLivro( livro.getId() );
+			
+		} catch (SQLException e) {
+			Assert.fail("Falha ao adicionar "+livro.toString() );
+		}
+		
+		assertTrue("ExcluirLivro - Livro Excluido com Sucesso "+livro.toString(), true);
 	}
 
 }
