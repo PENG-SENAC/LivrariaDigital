@@ -1,47 +1,29 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-
+<jsp:include page="include/header.jsp">
+	<jsp:param value="Cadastro de Livro" name="title"/>
+</jsp:include>
+<h3>Cadastro de Livro</h3>
 <form id="formCadastrarLivro" action="LivrariaDigitalController" method="POST">
-	<table>
-		<tr>
-			<td colspan="2" align="center"><h3>Cadastrar Livro</h3></td>
-		</tr>
-		<tr>
-			<td><label for="titulo">Titulo: </label></td>
-			<td><input type="text" id="titulo" name="titulo" /></td>
-		</tr>
-		<tr>
-			<td><label for="autor">Autor: </label></td>
-			<td><input type="text" id="autor" name = "autor" /></td>
-		</tr>
-		<tr>
-			<td><label for="editora">Editora: </label></td>
-			<td><input type="text" id="editora" name = "editora" /></td>
-		</tr>
-		<tr>
-			<td><label for="email">Data: </label></td>
-			<td><input type="text" id="data" name = "data" /></td>
-		</tr>
-		<tr>
-			<td><label for="email">Email: </label></td>
-			<td><input type="text" id="email" name = "email" /></td>
-		</tr>
-		<tr><td>&nbsp;</td></tr> <!-- Apenas espaço em branco -->
-		<tr>
-			<td>&nbsp;</td>
-			<td align="right">
-				<input type="hidden" name="rn" value="LogicaAdicionaLivro" />
-				<input type="submit" value ="cadastrar" name="cadastrar" />
-			</td>
-		</tr>
-	</table>
+	<div class="form-group">
+		<label for="titulo">Titulo: </label>
+		<input type="text" id="titulo" class="form-control" name="titulo" />
+	</div>
+	<div class="form-group">	
+			<label for="autor">Autor: </label>
+			<input type="text" id="autor" class="form-control" name="autor" />
+	</div>	
+	<div class="form-group">	
+			<label for="editora">Editora: </label>
+			<input type="text" id="editora" class="form-control" name="editora" />
+	</div>
+	<div class="form-group">
+			<label for="email">Data: </label>
+			<input type="text" id="data" class="form-control" name="data" />
+	</div>
+	<div class="form-group">
+			<label for="email">Email: </label>
+			<input type="text" id="email" class="form-control" name="email" />
+	</div>
+	<input type="hidden" name="rn" value="LogicaAdicionaLivro" />
+	<input class="btn btn-default " type="submit" value ="cadastrar" name="cadastrar" />
 </form>
-</body>
-</html>
+<jsp:include page="include/footer.jsp"></jsp:include>

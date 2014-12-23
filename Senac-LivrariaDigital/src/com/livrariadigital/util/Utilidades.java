@@ -17,5 +17,9 @@ public class Utilidades {
 		SimpleDateFormat sdf = new SimpleDateFormat(Constantes.dataFormato);
 		return sdf.format(date);
 	}
+	
+	public static Date sqlDateToUtilDate(java.sql.Date sqlDate){
+		return new Date(sqlDate.getTime());
+	}
 
 }

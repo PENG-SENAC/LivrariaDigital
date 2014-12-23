@@ -45,7 +45,7 @@ public class TesteLivrariaDigital {
 		List<Livro> livros = null;
 		
 		try {
-			livros = TesteLivrariaDigital.getLista();
+			livros = (new LivroDAO( FabricaDeConexao.getConexao() )).getLista();
 			System.out.println( "LISTA DE LIVROS: "+livros.toString() );
 		
 		} catch (SQLException e) {
@@ -54,11 +54,6 @@ public class TesteLivrariaDigital {
 		
 		Assert.assertNotNull(livros);
 		
-	}
-	
-	public static List<Livro> getLista() throws SQLException{
-		LivroDAO dao = new LivroDAO( FabricaDeConexao.getConexao() );
-		return dao.getLista();
 	}
 	
 	@Test
@@ -85,6 +80,7 @@ public class TesteLivrariaDigital {
 			
 		} catch (SQLException e) {
 			Assert.fail("Falha ao adicionar "+livro.toString() );
+			System.out.println(e.getMessage());
 		}
 		
 		assertTrue("Sucesso Livro Adicionado com sucesso "+livro.toString(), true);
@@ -96,8 +92,10 @@ public class TesteLivrariaDigital {
 		List<Livro> livros = null;
 		LivroDAO dao;
 		try {
-			livros = this.getLista();
+			livros = (new LivroDAO( FabricaDeConexao.getConexao() )).getLista();
+
 		} catch (SQLException e1) {
+			System.out.println(e1.getMessage());
 			Assert.fail("ExcluirLivro - Teste ao receber Lista ");
 		}
 		
@@ -108,10 +106,33 @@ public class TesteLivrariaDigital {
 			dao.excluirLivro( livro.getId() );
 			
 		} catch (SQLException e) {
-			Assert.fail("Falha ao adicionar "+livro.toString() );
+			Assert.fail("Falha ao Excluir "+livro.toString() );
+			System.out.println(e.getMessage());
 		}
 		
 		assertTrue("ExcluirLivro - Livro Excluido com Sucesso "+livro.toString(), true);
+	}
+	
+	@Test
+	public void testeGetLivroByID(){
+		List<Livro> livros = null;
+		LivroDAO dao;
+		Long idLivro;
+		
+		Livro livro;
+		try {
+			dao = new LivroDAO( FabricaDeConexao.getConexao() );
+			livros = dao.getLista();
+			idLivro = livros.get( livros.size()-1 ).getId();
+			
+			livro = dao.getLivroById(idLivro);
+			
+			System.out.println("getLivroByID "+livro.toString());
+		} catch (SQLException e1) {
+			System.out.println(e1.getMessage());
+			Assert.fail("ExcluirLivro - Teste ao receber Lista ");
+		}
+		
 	}
 
 }

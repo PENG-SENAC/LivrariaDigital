@@ -9,12 +9,13 @@ import com.livrariadigital.model.jdbc.FabricaDeConexao;
 public class LogicaExcluirLivro implements LogicaDeNegocio{
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		System.out.println("Logica Excluir Livro");
-		String id = request.getParameter("id");
+		String idString = request.getParameter("id");
+		Long id = new Long( idString );
 		LivroDAO dao = new LivroDAO( FabricaDeConexao.getConexao() );
-		//dao excluir livro
+		dao.excluirLivro(id);
 	}
 
 }

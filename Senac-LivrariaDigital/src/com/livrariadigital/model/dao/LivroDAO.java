@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -13,6 +14,7 @@ import java.util.List;
 
 import com.livrariadigital.constantes.Constantes;
 import com.livrariadigital.model.Livro;
+import com.livrariadigital.util.Utilidades;
 
 public class LivroDAO {
 	private Connection con;
@@ -33,11 +35,9 @@ public class LivroDAO {
 		this.stmt.setString(3, livro.getEditora());
 		this.stmt.setString(4, livro.getEmail());
 		this.stmt.setDate(5, new java.sql.Date(livro.getDataLancamento().getTime()) );
-
 		this.stmt.executeUpdate();
 
-		System.out.println("LivroDAO - ADICIONA :" + livro.toString());
-		this.closeStatement();
+		this.close();
 
 	}
 	
@@ -61,7 +61,30 @@ public class LivroDAO {
 		this.stmt.executeUpdate();
 		
 		System.out.println("LivroDAO - EDITAR :" + livro.toString());
-		this.closeStatement();
+		this.close();
+	}
+	
+	public Livro getLivroById(Long id) throws SQLException{
+		String sql = "SELECT * FROM livros WHERE id = ?";
+		this.stmt = this.con.prepareStatement(sql);
+		Livro livro = new Livro();
+		this.stmt.setLong(1, id);
+		this.stmt.setMaxRows(1); 
+		ResultSet rs = this.stmt.executeQuery();
+		if( rs.first() ){
+			livro.setId(rs.getLong("id"));
+			livro.setTitulo(rs.getString("titulo"));
+			livro.setAutor(rs.getString("autor"));
+			livro.setEditora(rs.getString("editora"));
+			livro.setEmail(rs.getString("email"));
+			
+			try {
+				livro.setDataLancamento( Utilidades.sqlDateToUtilDate( rs.getDate("dataLancamento") ) );
+			} catch (Exception e) {
+				livro.setDataLancamento( new java.util.Date() );
+			}
+		}
+		return livro;
 	}
 
 	public List<Livro> getLista() throws SQLException {
@@ -79,11 +102,16 @@ public class LivroDAO {
 			livro.setAutor(rs.getString("autor"));
 			livro.setEditora(rs.getString("editora"));
 			livro.setEmail(rs.getString("email"));
-			livro.setDataLancamento( rs.getDate("dataLancamento") );
+			try {
+				livro.setDataLancamento( Utilidades.sqlDateToUtilDate( rs.getDate("dataLancamento") ) );
+			} catch (Exception e) {
+				livro.setDataLancamento( new java.util.Date() );
+			}
+			
 
 			livros.add(livro);
 		}
-		this.closeStatement();
+		this.close();
 		return livros;
 	}
 	
@@ -92,9 +120,11 @@ public class LivroDAO {
 		this.stmt = this.con.prepareStatement(sql);
 		this.stmt.setLong(1, id);
 		stmt.execute();
+		close();
 	}
 
-	public void closeStatement() throws SQLException {
+	public void close() throws SQLException{
 		this.stmt.close();
 	}
+	
 }

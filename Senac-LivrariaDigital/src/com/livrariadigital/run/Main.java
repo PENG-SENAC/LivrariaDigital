@@ -25,8 +25,13 @@ public class Main {
 		try {
 			Connection con = FabricaDeConexao.getConexao();
 			PreparedStatement prepared = con.prepareStatement(query);
-			prepared.execute();
-			System.out.println("Tabela Livros Criada");
+			
+			if( prepared.execute() ){
+				System.out.println("Tabela Livros Criada");
+			} else {
+				System.out.println("Tabela Livros ja Existe");
+			}
+			
 			prepared.close();
 			con.close();
 		} catch (SQLException e) {
