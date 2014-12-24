@@ -11,8 +11,8 @@ public class FabricaDeConexao {
 			Class.forName("com.mysql.jdbc.Driver");
 			String endereco = "jdbc:mysql://localhost/";
 			String schemaDB = "livraria";
-			String usuario = "root";
-			String senha = "";
+			String usuario = "livraria";
+			String senha = "livraria";
 			
 			return DriverManager.getConnection(endereco+schemaDB, usuario, senha);
 

@@ -2,8 +2,13 @@
 <%@ page import="com.livrariadigital.controller.logicanegocio.LogicaListarLivro"  %>
 <%@ page import="com.livrariadigital.model.Livro"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<jsp:useBean id="livros" class="com.livrariadigital.controller.logicanegocio.LogicaListarLivro"></jsp:useBean>
-<h3>${param.title}</h3>
+<jsp:useBean id="logicaLivros" class="com.livrariadigital.controller.logicanegocio.LogicaListarLivro"></jsp:useBean>
+<c:if test="${empty param.buscar}">
+	<c:set var="listaSelecionada" value="${logicaLivros.lista}" />
+</c:if>
+<c:if test="${not empty param.buscar}">
+	<c:set var="listaSelecionada" value="${logicaLivros.buscarListaTitulo( param.buscar )}" />
+</c:if>
 <table class="table table-striped">
 	<tr>
 		<th>ID</th>
@@ -14,7 +19,7 @@
 		<th>Email</th>
 		<th>&nbsp;</th>
 	</tr>
-	<c:forEach var="livro" items="${livros.lista}" >
+	<c:forEach var="livro" items="${listaSelecionada}" >
 	<tr>
 		<td>${livro.id}</td>
 		<td>${livro.titulo}</td>

@@ -20,7 +20,7 @@ public class LogicaListarLivro implements LogicaDeNegocio {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		this.getLista();
+		
 	}
 	
 	public List<Livro> getLista() throws SQLException {
@@ -29,5 +29,11 @@ public class LogicaListarLivro implements LogicaDeNegocio {
 		
 		return lista;
 	}
-
+	
+	public List<Livro> buscarListaTitulo(String nomeTitulo) throws SQLException {
+		LivroDAO livroDao = new LivroDAO(FabricaDeConexao.getConexao());
+		this.lista = livroDao.buscaLivroTitulo(nomeTitulo);
+		
+		return lista;
+	}
 }

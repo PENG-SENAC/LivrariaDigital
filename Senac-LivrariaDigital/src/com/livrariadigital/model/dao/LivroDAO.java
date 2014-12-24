@@ -24,7 +24,7 @@ public class LivroDAO {
 		this.con = con;
 	}
 
-	// método que adiciona livro ao banco de dados
+	//metodo que adiciona livro ao banco de dados
 	public void adicionarLivro(Livro livro) throws SQLException {
 		String sql = "INSERT INTO livros (titulo,autor,editora,email,dataLancamento) values (? ,? ,? ,? ,?)";
 
@@ -86,17 +86,39 @@ public class LivroDAO {
 		}
 		return livro;
 	}
+	
+	public List<Livro> buscaLivroTitulo(String nomeLivro) throws SQLException{
+		String sql = "SELECT * FROM livros WHERE titulo like ?";
+		List<Livro> livros = null;
+		this.stmt = this.con.prepareStatement(sql);
+		this.stmt.setString(1, "%"+nomeLivro+"%");
+		ResultSet rs = this.stmt.executeQuery();
+		livros = preencheListaLivro(rs);
+		return livros;
+	}
 
 	public List<Livro> getLista() throws SQLException {
 		String sql = "SELECT * FROM livros";
-		List<Livro> livros = new ArrayList<Livro>();
+		List<Livro> livros = null;
 		
 		this.stmt = this.con.prepareStatement(sql);
 		ResultSet rs = this.stmt.executeQuery();
-
+		livros = preencheListaLivro(rs);
+		return livros;
+	}
+	
+	public void excluirLivro( Long id ) throws SQLException{
+		String sql = "DELETE FROM livros WHERE id=?";
+		this.stmt = this.con.prepareStatement(sql);
+		this.stmt.setLong(1, id);
+		stmt.execute();
+		close();
+	}
+	
+	private List<Livro> preencheListaLivro( ResultSet rs ) throws SQLException{
+		List<Livro> livros = new ArrayList<Livro>();
 		while (rs.next()) {
 			Livro livro = new Livro();
-
 			livro.setId(rs.getLong("id"));
 			livro.setTitulo(rs.getString("titulo"));
 			livro.setAutor(rs.getString("autor"));
@@ -107,20 +129,9 @@ public class LivroDAO {
 			} catch (Exception e) {
 				livro.setDataLancamento( new java.util.Date() );
 			}
-			
-
 			livros.add(livro);
 		}
-		this.close();
 		return livros;
-	}
-	
-	public void excluirLivro( Long id ) throws SQLException{
-		String sql = "DELETE FROM livros WHERE id=?";
-		this.stmt = this.con.prepareStatement(sql);
-		this.stmt.setLong(1, id);
-		stmt.execute();
-		close();
 	}
 
 	public void close() throws SQLException{

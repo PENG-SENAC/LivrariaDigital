@@ -1,6 +1,7 @@
 <jsp:include page="include/header.jsp">
 	<jsp:param value="Cadastro de Livro" name="title"/>
 </jsp:include>
+<jsp:include page="include/navmenu.jsp"></jsp:include>
 <h3>Cadastro de Livro</h3>
 <form id="formCadastrarLivro" action="LivrariaDigitalController" method="POST">
 	<div class="form-group">

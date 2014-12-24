@@ -5,6 +5,7 @@
 <jsp:include page="include/header.jsp">
 	<jsp:param value="Editar Livro" name="title"/>
 </jsp:include>
+	<jsp:include page="include/navmenu.jsp"></jsp:include>
 	<jsp:include page="include/formulariolivro.jsp">
 		<jsp:param value="Editar Livro" name="pagina"/>
 		<jsp:param value="Editar" name="botao"/>

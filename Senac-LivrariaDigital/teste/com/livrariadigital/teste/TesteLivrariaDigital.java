@@ -86,6 +86,28 @@ public class TesteLivrariaDigital {
 		assertTrue("Sucesso Livro Adicionado com sucesso "+livro.toString(), true);
 	}
 	
+	
+	@Test
+	public void testeBuscaLivroTitulo(){
+		List<Livro> livros = null;
+		LivroDAO dao;
+		String tituloLivro;
+		
+		try {
+			dao = new LivroDAO( FabricaDeConexao.getConexao() );
+			livros = dao.getLista();
+			tituloLivro = livros.get( livros.size()-1 ).getTitulo();
+			
+			livros = dao.buscaLivroTitulo( tituloLivro );
+			
+			System.out.println("testeBuscaLivroTitulo "+livros.toString());
+		} catch (SQLException e1) {
+			System.out.println(e1.getMessage());
+			Assert.fail("testeBuscaLivroTitulo - Teste ao receber Lista ");
+		}
+		
+	}
+	
 	@Test
 	public void testeExcluirLivro(){
 		this.testeAdicionarLivro();
