@@ -23,7 +23,7 @@ public class LogicaAdicionarLivro implements LogicaDeNegocio {
 		
 		dao.adicionarLivro(livro);
 
-		RequestDispatcher rd = request.getRequestDispatcher("/listascriptlet.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/listalivros.jsp");
 		rd.forward(request, response);
 	}
 }

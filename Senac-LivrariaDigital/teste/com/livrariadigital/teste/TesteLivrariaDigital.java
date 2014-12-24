@@ -98,7 +98,7 @@ public class TesteLivrariaDigital {
 			livros = dao.getLista();
 			tituloLivro = livros.get( livros.size()-1 ).getTitulo();
 			
-			livros = dao.buscaLivroTitulo( tituloLivro );
+			livros = dao.buscarLivroByTitulo( tituloLivro );
 			
 			System.out.println("testeBuscaLivroTitulo "+livros.toString());
 		} catch (SQLException e1) {
@@ -146,8 +146,7 @@ public class TesteLivrariaDigital {
 			dao = new LivroDAO( FabricaDeConexao.getConexao() );
 			livros = dao.getLista();
 			idLivro = livros.get( livros.size()-1 ).getId();
-			
-			livro = dao.getLivroById(idLivro);
+			livro = dao.buscarLivroById(idLivro);
 			
 			System.out.println("getLivroByID "+livro.toString());
 		} catch (SQLException e1) {

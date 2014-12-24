@@ -24,7 +24,7 @@
 			<label for="email">Email: </label>
 			<input type="text" id="email" class="form-control" name="email" />
 	</div>
-	<input type="hidden" name="rn" value="LogicaAdicionaLivro" />
+	<input type="hidden" name="rn" value="LogicaAdicionarLivro" />
 	<input class="btn btn-default " type="submit" value ="cadastrar" name="cadastrar" />
 </form>
 <jsp:include page="include/footer.jsp"></jsp:include>

@@ -1,5 +1,7 @@
 package com.livrariadigital.controller.logicanegocio;
 
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,11 +13,12 @@ public class LogicaExcluirLivro implements LogicaDeNegocio{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("Logica Excluir Livro");
-		String idString = request.getParameter("id");
-		Long id = new Long( idString );
+	}
+	
+	public void excluirLivroByID( Long livroID ) throws SQLException{
 		LivroDAO dao = new LivroDAO( FabricaDeConexao.getConexao() );
-		dao.excluirLivro(id);
+		dao.excluirLivro(livroID);
+		String nada = "";
 	}
 
 }

@@ -36,7 +36,7 @@ public class LivroDAO {
 		this.stmt.setString(4, livro.getEmail());
 		this.stmt.setDate(5, new java.sql.Date(livro.getDataLancamento().getTime()) );
 		this.stmt.executeUpdate();
-
+		
 		this.close();
 
 	}
@@ -64,7 +64,7 @@ public class LivroDAO {
 		this.close();
 	}
 	
-	public Livro getLivroById(Long id) throws SQLException{
+	public Livro buscarLivroById(Long id) throws SQLException{
 		String sql = "SELECT * FROM livros WHERE id = ?";
 		this.stmt = this.con.prepareStatement(sql);
 		Livro livro = new Livro();
@@ -87,7 +87,7 @@ public class LivroDAO {
 		return livro;
 	}
 	
-	public List<Livro> buscaLivroTitulo(String nomeLivro) throws SQLException{
+	public List<Livro> buscarLivroByTitulo(String nomeLivro) throws SQLException{
 		String sql = "SELECT * FROM livros WHERE titulo like ?";
 		List<Livro> livros = null;
 		this.stmt = this.con.prepareStatement(sql);
@@ -111,7 +111,7 @@ public class LivroDAO {
 		String sql = "DELETE FROM livros WHERE id=?";
 		this.stmt = this.con.prepareStatement(sql);
 		this.stmt.setLong(1, id);
-		stmt.execute();
+		this.stmt.execute();
 		close();
 	}
 	

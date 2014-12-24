@@ -32,8 +32,15 @@ public class LogicaListarLivro implements LogicaDeNegocio {
 	
 	public List<Livro> buscarListaTitulo(String nomeTitulo) throws SQLException {
 		LivroDAO livroDao = new LivroDAO(FabricaDeConexao.getConexao());
-		this.lista = livroDao.buscaLivroTitulo(nomeTitulo);
+		this.lista = livroDao.buscarLivroByTitulo(nomeTitulo);
 		
 		return lista;
+	}
+	
+	public Livro buscarLivroByID(Long idLivro) throws SQLException {
+		LivroDAO livroDao = new LivroDAO(FabricaDeConexao.getConexao());
+		Livro livro = livroDao.buscarLivroById(idLivro);
+		
+		return livro;
 	}
 }

@@ -28,10 +28,10 @@
 		<td>${livro.dataLancamento}</td>
 		<td>${livro.email}</td>
 		<td><button type="button" class="btn btn-default">
-				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+				<a class="glyphicon glyphicon-pencil" href="" ></a>
 			</button>
 			<button type="button" class="btn btn-default">
-				<span class="glyphicon glyphicon-remove-circle" aria-hidden="false"></span>
+				<a class="glyphicon glyphicon-remove-circle" aria-hidden="false" href="excluirlivro.jsp?excluirLivro=${livro.id}"></a>
 			</button>
 		</td>
 	</tr>
