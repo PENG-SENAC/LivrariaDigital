@@ -5,6 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>LivrariaDigital</display-name>
 	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
 		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
@@ -12,12 +13,20 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	<servlet>
+		<servlet-name>LivrariaDigitalController</servlet-name>
+		<servlet-class>com.livrariadigital.controller.LivrariaDigitalController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LivrariaDigitalController</servlet-name>
+		<url-pattern>*.xhtml</url-pattern> 
+	</servlet-mapping>
 	<error-page>
 		<error-code>404</error-code>
-		<location>/page404.jsp</location>
+		<location>/page404.xhtml</location>
 	</error-page>
 	<error-page>
 		<exception-type>java.sql.SQLException</exception-type>
-		<location>/dataBase.jsp</location>
+		<location>/database.xhtml</location>
 	</error-page>
 </web-app>

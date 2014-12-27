@@ -3,6 +3,7 @@
 <%@ page import="com.livrariadigital.model.Livro"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:useBean id="logicaLivros" class="com.livrariadigital.controller.logicanegocio.LogicaListarLivro"></jsp:useBean>
+<jsp:useBean id="util" class="com.livrariadigital.util.Utilidades"></jsp:useBean>
 <c:if test="${empty param.buscar}">
 	<c:set var="listaSelecionada" value="${logicaLivros.lista}" />
 </c:if>
@@ -25,14 +26,15 @@
 		<td>${livro.titulo}</td>
 		<td>${livro.autor}</td>
 		<td>${livro.editora}</td>
-		<td>${livro.dataLancamento}</td>
+		<td><c:out value="${util.dateToString(livro.dataLancamento)}" /></td>
 		<td>${livro.email}</td>
-		<td><button type="button" class="btn btn-default">
-				<a class="glyphicon glyphicon-pencil" href="" ></a>
-			</button>
-			<button type="button" class="btn btn-default">
+		<td>
+			<span role="button" class="btn btn-default">
+				<a class="glyphicon glyphicon-pencil" href="editarlivro.jsp?editarLivro=${livro.id}" ></a>
+			</span>
+			<span role="button" class="btn btn-default">
 				<a class="glyphicon glyphicon-remove-circle" aria-hidden="false" href="excluirlivro.jsp?excluirLivro=${livro.id}"></a>
-			</button>
+			</span>
 		</td>
 	</tr>
 	</c:forEach>

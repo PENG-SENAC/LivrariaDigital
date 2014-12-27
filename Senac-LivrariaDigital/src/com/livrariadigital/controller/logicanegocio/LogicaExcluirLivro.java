@@ -18,7 +18,6 @@ public class LogicaExcluirLivro implements LogicaDeNegocio{
 	public void excluirLivroByID( Long livroID ) throws SQLException{
 		LivroDAO dao = new LivroDAO( FabricaDeConexao.getConexao() );
 		dao.excluirLivro(livroID);
-		String nada = "";
 	}
 
 }

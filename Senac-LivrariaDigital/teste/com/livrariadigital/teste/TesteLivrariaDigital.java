@@ -103,7 +103,7 @@ public class TesteLivrariaDigital {
 			System.out.println("testeBuscaLivroTitulo "+livros.toString());
 		} catch (SQLException e1) {
 			System.out.println(e1.getMessage());
-			Assert.fail("testeBuscaLivroTitulo - Teste ao receber Lista ");
+			Assert.fail("testeBuscaLivroTitulo - Erro ao receber Lista ");
 		}
 		
 	}

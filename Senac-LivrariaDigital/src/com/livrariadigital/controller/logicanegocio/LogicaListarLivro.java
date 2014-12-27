@@ -9,32 +9,42 @@ import javax.servlet.http.HttpServletResponse;
 import com.livrariadigital.model.Livro;
 import com.livrariadigital.model.dao.LivroDAO;
 import com.livrariadigital.model.jdbc.FabricaDeConexao;
+import com.livrariadigital.util.Utilidades;
 
 public class LogicaListarLivro implements LogicaDeNegocio {
-	List<Livro> lista = null;	
+		
 	
 	public LogicaListarLivro() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-		
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		LivroDAO livroDao = new LivroDAO(FabricaDeConexao.getConexao());
+		String nomeLivro = request.getParameter("nomeLivro");
+		List<Livro> livros = null;
+		System.out.println("logicalistarlivro");
+		if( Utilidades.nullOrEmpty(nomeLivro) ){
+			livros = livroDao.getLista();
+		} else {
+			livros = livroDao.buscarLivroByTitulo(nomeLivro);
+		}
+		 
+		request.setAttribute("livros", livros);
 	}
 	
 	public List<Livro> getLista() throws SQLException {
 		LivroDAO livroDao = new LivroDAO(FabricaDeConexao.getConexao());
-		this.lista = livroDao.getLista();
+		List<Livro> livros = livroDao.getLista();
 		
-		return lista;
+		return livros;
 	}
 	
 	public List<Livro> buscarListaTitulo(String nomeTitulo) throws SQLException {
 		LivroDAO livroDao = new LivroDAO(FabricaDeConexao.getConexao());
-		this.lista = livroDao.buscarLivroByTitulo(nomeTitulo);
+		List<Livro> livros =  livroDao.buscarLivroByTitulo(nomeTitulo);
 		
-		return lista;
+		return livros;
 	}
 	
 	public Livro buscarLivroByID(Long idLivro) throws SQLException {
