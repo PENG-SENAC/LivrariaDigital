@@ -24,11 +24,11 @@
 			<th>Email</th>
 			<%
 				LivroDAO dao = new LivroDAO(FabricaDeConexao.getConexao());
-				List livros = dao.getLista();
-				Livro livro;
+					List livros = dao.readLivros();
+					Livro livro;
 
-				for (int i = 0; i < livros.size(); i++) {
-					livro = (Livro) livros.get(i);
+					for (int i = 0; i < livros.size(); i++) {
+						livro = (Livro) livros.get(i);
 			%>
 			<tr class="alt">
 				<td><%=livro.getId()%></td>
